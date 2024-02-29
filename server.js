@@ -4,10 +4,13 @@ require("dotenv").config()
 // 1. Read the connection parameters from config.js.
 // 2. Use Mongoose to connect to the MongoDB database.
 // 3. Export the Mongoose connection object.
-const config = require('./config.js')
+// const config = require('./config.js')
 const mongoose = require('mongoose');
-const mongoURI = config.mongoURI
+const mongoURI = process.env.mongoURI
 const port = process.env.PUBLIC_PORT
+const Root = require('./root.js')
+
+app.use('/',Root)
 
 // define the ping route
 app.get('/ping', (req, res) => {
