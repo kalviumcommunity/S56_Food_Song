@@ -18,10 +18,14 @@ const mongoURI = process.env.mongoURI
 console.log(mongoURI)
 const port = process.env.PUBLIC_PORT
 
-app.get('/getUser', (req, res) => {
-  UserModel.find()
-    .then(users => res.json(users))
-    .catch(err => res.json(err));
+app.get('/getUser', async(req, res) => {
+  try {
+    let data = await UserModel.find()
+   res.send(data)
+  } catch (error) {
+   res.send(error) 
+  }
+  
 });
 
 // app.use('/',Root)
