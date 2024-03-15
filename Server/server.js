@@ -9,14 +9,25 @@ require("dotenv").config()
 app.use(cors());
 app.use(express.json())
 
-// 1. Read the connection parameters from config.js.
-// 2. Use Mongoose to connect to the MongoDB database.
-// 3. Export the Mongoose connection object.
-// const config = require('./config.js')
 
 const mongoURI = process.env.mongoURI
 console.log(mongoURI)
 const port = process.env.PUBLIC_PORT
+
+app.post("/createUser",async(req,res)=>{
+  try{
+    const newUser = await UserModel.create(req.body);
+    res.send(newUser)
+  }
+  catch(error){
+    res.send(error);
+  }
+});
+// app.post("/createUser",(req,res)=>{
+//   UserModel.create(req.body)
+//   .then(users=>res.json(users))
+//   .catch(err=>res.json(err))
+// })
 
 app.get('/getUser', async(req, res) => {
   try {
@@ -28,6 +39,15 @@ app.get('/getUser', async(req, res) => {
   
 });
 
+//1make same like above with diff endpoint
+app.get('/create',async(req,res)=>{
+  try{
+    let info = await UserModel.find()
+    res.send(info)
+  }catch(error){
+    res.send(error)
+  }
+})
 // app.use('/',Root)
 
 // define the ping route
