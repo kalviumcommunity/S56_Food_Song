@@ -23,11 +23,6 @@ app.post("/createUser",async(req,res)=>{
     res.send(error);
   }
 });
-// app.post("/createUser",(req,res)=>{
-//   UserModel.create(req.body)
-//   .then(users=>res.json(users))
-//   .catch(err=>res.json(err))
-// })
 
 app.get('/getUser', async(req, res) => {
   try {
