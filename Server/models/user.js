@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 
 const UserSchema = new mongoose.Schema({
     food: String,
-    lyrics: String,
     song: String,
     img: String
 })

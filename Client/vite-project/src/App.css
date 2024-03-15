@@ -34,3 +34,18 @@ input{
 .grid-item{
     box-shadow: 10px 10px 33px 4px rgb(166, 204, 228);
 }
+.food{
+    font-size: 20px;
+    color: #0015f8;
+  text-align: center;
+  animation: food 1s ease-in-out infinite alternate;
+}
+@keyframes food {
+    from {
+      text-shadow: 0 0 0px #fff, 0 0 80px #5d94e6, 0 0 0px #000000, 0 0 0px #000000, 0 0 0px #060405, 0 0 0px #000000, 0 0 0px #e1e1e1;
+    }
+    
+    to {
+      text-shadow: 0 0 0px #fff, 0 0 0px #000000, 0 0 0px #000000, 0 0 0px #080607, 0 0 0px #000000, 0 0 0px #92b5e9, 0 0 60px #90b2eb;
+    }
+  }
