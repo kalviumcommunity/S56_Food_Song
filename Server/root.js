@@ -2,6 +2,7 @@ const express = require ('express')
 const router = express.Router()
 const port = process.env.PUBLIC_PORT || 3000
 
+router.use(express.json)
 router.get('/get',(req,res)=>{
     res.send("It is a get request")
 })

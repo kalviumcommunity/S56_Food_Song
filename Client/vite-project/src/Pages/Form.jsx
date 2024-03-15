@@ -4,18 +4,23 @@ import Navbar from "../Components/Navbar";
 import { Link } from "react-router-dom";
 import "./Form.css"
 function Form(){
-    const [image,setImage]= useState('');
+    const [img,setImage]= useState('');
     const [song,setSong]= useState('');
     const [food,setFood]= useState('');
-    const [done,setDone]= useState({img:image,food:food,song:song})
-  //2 ftech the data and use post in this one same like home wala useeffect change the end point according to route
-  //3 put value in input
+    const [done,setDone]= useState({img:img,food:food,song:song})
+
+    const handleSubmit = (e)=>{
+        e.preventDefault();
+        axios.post("https://s56-food-song-2.onrender.com/createUser", {img,song,food})
+        .then(result =>console.log(result))
+        .catch(err=>console.log(err))
+       }
     return(
         <>
          <Navbar/>
          <div>
         
-         <form action="/submit" method="post">
+         <form action="/submit" method="post" onSubmit={handleSubmit}>
           <label htmlFor="name">Name:</label><br />
           <input type="text" id="name" name="name" /><br /><br />
 
@@ -24,28 +29,9 @@ function Form(){
 
           <label htmlFor="food">Favorite Food:</label><br />
           <input type="text" id="food" name="food" /><br /><br />
-
+          <Link to="/"><button type="submit">SUBMIT</button></Link>
         </form>
-            {/* <table>
-                <thead>
-                <tr>
-                    <th>Image</th>
-                    <th>Song</th>
-                    <th>Food</th>
-                </tr>
-                </thead>
-                <tbody>
-                    {users.map(user=>(
-                        <tr>
-                            <td>{user.Image}</td>
-                            <td>{user.Song}</td>
-                            <td>{user.Food}</td>
-                            <td><button>Edit</button><button>Delete</button></td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table> */}
-            <Link to="/"><button>SUBMIT</button></Link>
+            
          </div>
         </>
     )
