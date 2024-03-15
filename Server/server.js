@@ -5,9 +5,9 @@ const mongoose = require('mongoose');
 const UserModel = require('./models/user.js')
 const app = express();
 
-require("dotenv").config()
-app.use(cors());
 app.use(express.json())
+app.use(cors());
+require("dotenv").config()
 
 
 const mongoURI = process.env.mongoURI
