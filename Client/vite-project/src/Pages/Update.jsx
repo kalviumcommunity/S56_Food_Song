@@ -23,7 +23,7 @@ function Update(){
           });
       }, []);
 
-      const update = (e)=>{
+      const handleUpdate = (e)=>{
         e.preventDefault();
         const newData = {
             img: img,
@@ -46,9 +46,7 @@ function Update(){
          <Navbar/>
          <div>
         
-         <form
-          onSubmit={update}
-          >
+         <form onSubmit={handleUpdate}>
           <label htmlFor="name">Image:</label><br />
           <input type="text" id="img" name="img" value={img} onChange={(e)=>{setImage(e.target.value)}}/><br /><br />
 
