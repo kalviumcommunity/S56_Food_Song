@@ -27,6 +27,7 @@ app.post("/createUser",async(req,res)=>{
 app.get('/getUser', async(req, res) => {
   try {
     let data = await UserModel.find()
+    console.log(data)
    res.send(data)
   } catch (error) {
    res.send(error) 
@@ -34,10 +35,11 @@ app.get('/getUser', async(req, res) => {
   
 });
 
-app.get('/updateUser/:id',async(req,res)=>{
+app.get('/getUser/:id',async(req,res)=>{
   try{
     const id = req.params.id;
-    let data = await UserModel.findById({id})
+    console.log(id)
+    let data = await UserModel.findById({_id:id})
     res.send(data)
   }catch (error) {
     res.send(error) 
