@@ -25,7 +25,7 @@ function Form(){
          <div>
         
          <form onSubmit={handleSubmit}>
-          <label htmlFor="name">Name:</label><br />
+          <label htmlFor="name">Image:</label><br />
           <input type="text" id="img" name="img" onChange={(e)=>{setImage(e.target.value)}} /><br /><br />
 
           <label htmlFor="song">Favorite Song:</label><br />
