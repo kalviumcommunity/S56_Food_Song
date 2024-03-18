@@ -8,6 +8,7 @@ function Update(){
     const [img,setImage]= useState('');
     const [song,setSong]= useState('');
     const [food,setFood]= useState('');
+    
 
     useEffect(() => {
         axios.get(`https://s56-food-song-2.onrender.com/getUser/${id}`)
@@ -22,6 +23,23 @@ function Update(){
           });
       }, []);
 
+      const update = (e)=>{
+        e.preventDefault();
+        const newData = {
+            img: img,
+            song: song,
+            food: food
+        };
+        axios.put(`https://s56-food-song-2.onrender.com/updatedUser/${id}`,newData)
+        .then(response=>{
+            console.log(response.data);
+            window.location.reload()
+        })
+        .catch(error=>{
+            console.log(error);
+        })
+    }
+
 
     return(
         <>
@@ -29,16 +47,16 @@ function Update(){
          <div>
         
          <form
-        //   onSubmit={handleSubmit}
+          onSubmit={update}
           >
           <label htmlFor="name">Image:</label><br />
-          <input type="text" id="img" name="img" /><br /><br />
+          <input type="text" id="img" name="img" value={img} onChange={(e)=>{setImage(e.target.value)}}/><br /><br />
 
           <label htmlFor="song">Favorite Song:</label><br />
-          <input type="text" id="song" name="song" /><br /><br />
+          <input type="text" id="song" name="song" value={song} onChange={(e)=>{setSong(e.target.value)}}/><br /><br />
 
           <label htmlFor="food">Favorite Food:</label><br />
-          <input type="text" id="food" name="food" /><br /><br />
+          <input type="text" id="food" name="food" value={food} onChange={(e)=>{setFood(e.target.value)}}/><br /><br />
           <input type="submit" />
         </form>
             
