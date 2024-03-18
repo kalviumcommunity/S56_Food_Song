@@ -50,7 +50,7 @@ app.put('/updateUser/:id',async(req,res)=>{
   try{
     const id = req.params.id;
     console.log(id)
-    let data = await UserModel.findById({_id:id})
+    let data = await UserModel.findByIdAndUpdate({_id:id},req.body,{new:true})
     res.send(data)
   }catch (error) {
     res.send(error) 
