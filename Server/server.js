@@ -46,6 +46,18 @@ app.get('/getUser/:id',async(req,res)=>{
    }
 })
 
+app.put('/updateUser/:id',async(req,res)=>{
+  try{
+    const id = req.params.id;
+    console.log(id)
+    let data = await UserModel.findById({_id:id})
+    res.send(data)
+  }catch (error) {
+    res.send(error) 
+   }
+})
+
+
 //1make same like above with diff endpoint
 app.get('/create',async(req,res)=>{
   try{
