@@ -4,6 +4,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const UserModel = require('./models/user.js')
 const app = express();
+const Joi = require('joi')
 
 app.use(express.json())
 app.use(cors());
@@ -14,8 +15,22 @@ const mongoURI = process.env.mongoURI
 console.log(mongoURI)
 const port = process.env.PUBLIC_PORT
 
+
+
+const createSchema = Joi.object({
+  img: Joi.string().required(),
+  song: Joi.string().required(),
+  food: Joi.string().required()
+})  
+
 app.post("/createUser",async(req,res)=>{
   try{
+    const {error, value} = createSchema.validate(req.body,{abortEarly: false})
+
+    if(error){
+      console.log(error);
+      return res.send(error.details)
+    }
     const newUser = await UserModel.create(req.body);
     res.send(newUser)
   }
@@ -69,6 +84,8 @@ app.delete('/deleteUser/:id',async(req,res)=>{
   }
 })
 
+
+ 
 
 app.get('/create',async(req,res)=>{
   try{
