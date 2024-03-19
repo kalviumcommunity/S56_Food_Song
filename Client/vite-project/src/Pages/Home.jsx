@@ -16,6 +16,18 @@ const [users, setUsers] = useState([]);
         console.log('Error fetching users:', error);
       });
   }, []);
+
+  const handleDelete = (id)=>{
+    axios.delete(`https://s56-food-song-2.onrender.com/deleteUser/${id}`)
+   .then(response=>{
+    console.log('Item deleted successfully!!!', response.data)
+    setUsers(response.data)
+    window.location.reload()
+   })
+   .catch(error=>{
+    console.log(error)
+   })
+  }
     return(
         <>
          <Navbar/>
@@ -25,7 +37,8 @@ const [users, setUsers] = useState([]);
              <img src={user.img} alt={user.food} style={{ width: '300px' }} />
              <h3 style={{ marginTop: '20px' }}>{user.song}</h3>
              <h4 className="food"style={{marginTop: '30px'}}>{user.food}</h4>
-            <Link to={`/update/${user._id}`}><button className="update">Update</button></Link><button className="delete">Delete</button>
+            <Link to={`/update/${user._id}`}><button className="update">Update</button></Link>
+            <button className="delete" onClick={(e)=>handleDelete(user._id)}>Delete</button>
            </div>
          ))}
        </div>
