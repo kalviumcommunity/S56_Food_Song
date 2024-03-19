@@ -22,11 +22,15 @@ const [users, setUsers] = useState([]);
    .then(response=>{
     console.log('Item deleted successfully!!!', response.data)
     setUsers(response.data)
-    window.location.reload()
+    
    })
    .catch(error=>{
     console.log(error)
    })
+
+   setTimeout(() => {
+    window.location.reload();
+}, 2000);
   }
     return(
         <>
