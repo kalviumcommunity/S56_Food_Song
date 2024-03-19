@@ -30,7 +30,8 @@ function Update(){
             song: song,
             food: food
         };
-        axios.put(`https://s56-food-song-2.onrender.com/updatedUser/${id}`,newData)
+        console.log(newData,id)
+        axios.put(`https://s56-food-song-2.onrender.com/updateUser/${id}`,newData)
         .then(response=>{
             console.log(response.data);
             window.location.reload()

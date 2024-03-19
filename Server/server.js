@@ -51,14 +51,25 @@ app.put('/updateUser/:id',async(req,res)=>{
     const id = req.params.id;
     console.log(id)
     let data = await UserModel.findByIdAndUpdate({_id:id},req.body,{new:true})
-    res.send(data)
+    res.send(data,"getting the data")
   }catch (error) {
     res.send(error) 
    }
 })
 
+app.delete('/deleteUser/:id',async(req,res)=>{
+  try{
+    const id = req.params.id;
+    console.log(id)
+    let data = await UserModel.findByIdAndDelete({_id:id})
+    res.send(data,'User deleted successfully')
+  }
+  catch (error){
+    res.send(error) 
+  }
+})
 
-//1make same like above with diff endpoint
+
 app.get('/create',async(req,res)=>{
   try{
     let info = await UserModel.find()
