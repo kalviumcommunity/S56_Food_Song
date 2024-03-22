@@ -7,9 +7,15 @@ function Login(){
 
 const handleSubmit =(e)=>{
     e.preventDefault();
-    console.log(username)
+   
     axios.post("https://s56-food-song-2.onrender.com/auth",{username,password})
-    .then(response=>console.log(response))
+    .then(response=>
+        {
+            console.log("hello")
+            document.cookie = `username=${username}`;
+            console.log(response)
+        }
+        )
     .catch(error=>console.log(error))
 }
 
