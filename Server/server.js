@@ -5,6 +5,8 @@ const mongoose = require('mongoose');
 const UserModel = require('./models/user.js')
 const app = express();
 const Joi = require('joi')
+const cookieParser = require('cookie-parser');
+app.use(cookieParser());
 
 app.use(express.json())
 app.use(cors());
@@ -84,6 +86,17 @@ app.delete('/deleteUser/:id',async(req,res)=>{
   }
 })
 
+app.post('/auth', async (req, res) => {
+  try {
+      const { username, password } = req.body;
+      const user ={
+        "username": username,
+        "password": password
+      }
+  } catch (error) {
+      console.log(error);
+  }
+});
 
  
 
