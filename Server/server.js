@@ -93,6 +93,7 @@ app.post('/auth', async (req, res) => {
         "username": username,
         "password": password
       }
+      res.send(user)
   } catch (error) {
       console.log(error);
   }
