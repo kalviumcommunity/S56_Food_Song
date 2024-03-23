@@ -97,7 +97,8 @@ app.post('/auth', async (req, res) => {
         "password": password
       }
        const accessToken = jwt.sign(user,process.env.ACCESS_TOKEN_SECRET)
-       res.json({accessToken:accessToken})
+       res.json(accessToken)
+       
       res.send(user)
   } catch (error) {
       console.log(error);
