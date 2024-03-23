@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const express = require('express')
 const {Router} = require('./root.js')
 const cors = require('cors');
@@ -6,6 +8,7 @@ const UserModel = require('./models/user.js')
 const app = express();
 const Joi = require('joi')
 const cookieParser = require('cookie-parser');
+const jwt = require('jsonwebtoken')
 app.use(cookieParser());
 
 app.use(express.json())
@@ -93,6 +96,8 @@ app.post('/auth', async (req, res) => {
         "username": username,
         "password": password
       }
+       const accessToken = jwt.sign(user,process.env.ACCESS_TOKEN_SECRET)
+       res.json({accessToken:accessToken})
       res.send(user)
   } catch (error) {
       console.log(error);
