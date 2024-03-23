@@ -11,7 +11,8 @@ function Login() {
        
         axios.post("https://s56-food-song-2.onrender.com/auth", { username, password })
             .then(response => {
-                document.cookie = `username=${username}`;
+                document.cookie = `username=${username}`
+                document.cookie = `token=${response.data};expires=`+new Date(2028,2,1).toUTCString;
                 console.log(response);
                 window.location.href = "/";
             })
