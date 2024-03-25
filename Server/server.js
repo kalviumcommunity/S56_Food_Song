@@ -4,7 +4,7 @@ const express = require('express')
 const {Router} = require('./root.js')
 const cors = require('cors');
 const mongoose = require('mongoose');
-const UserModel = require('./models/user.js')
+const {UserMode,UserDetail} = require('./models/user.js')
 const app = express();
 const Joi = require('joi')
 const cookieParser = require('cookie-parser');
@@ -105,6 +105,16 @@ app.post('/auth', async (req, res) => {
   }
 });
 
+
+app.get('/username',async(req,res)=>{
+  try{
+    let data = await UserDetail.find()
+    res.send(data)
+  }
+  catch(error){
+    res.send(error)
+  }
+})
  
 
 app.get('/create',async(req,res)=>{
