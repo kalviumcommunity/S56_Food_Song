@@ -12,6 +12,6 @@ const UserDetails = new mongoose.Schema({
 })
 
 
-const UserModel = mongoose.model("food", UserSchema)
-const UserDetail = mongoose.model("username", UserDetails)
+const UserModel = mongoose.model("foods", UserSchema)
+const UserDetail = mongoose.model("usernames", UserDetails)
 module.exports = {UserModel,UserDetail}
