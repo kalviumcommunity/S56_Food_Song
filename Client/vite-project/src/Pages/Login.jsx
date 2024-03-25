@@ -1,30 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 
 function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [users, setUsers] = useState([])
    
-    useEffect(()=>{
-        axios.get("https://s56-food-song-2.onrender.com/username",)
-        .then(response => {
-            setUsers(response.data);
-          })
-          .catch(error => {
-            console.log( error);
-          })
-    },[])
-
-
-    if(username.includes(`${username}`)){
-        console.log(username)
-        return;
-    }else{
-        axios.post('https://s56-food-song-2.onrender.com/addUsername')
-            .then((res)=>console.log(res))
-        
-    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
