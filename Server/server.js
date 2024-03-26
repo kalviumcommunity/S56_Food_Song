@@ -4,7 +4,7 @@ const express = require('express')
 const {Router} = require('./root.js')
 const cors = require('cors');
 const mongoose = require('mongoose');
-const {UserMode,UserDetail} = require('./models/user.js')
+const {UserModel,UserDetail} = require('./models/user.js')
 const app = express();
 const Joi = require('joi')
 const cookieParser = require('cookie-parser');
@@ -105,17 +105,25 @@ app.post('/auth', async (req, res) => {
   }
 });
 
-
 app.get('/username',async(req,res)=>{
   try{
     let data = await UserDetail.find()
+    console.log(data)
     res.send(data)
-  }
-  catch(error){
+  }catch(error){
     res.send(error)
   }
 })
- 
+
+
+app.post("/addUsername", async (req, res) => {
+  try {
+    let response = await UserDetail.create(req.body);
+    res.send(response);
+  } catch (error) {
+    res.send(error);
+  }
+});
 
 app.get('/create',async(req,res)=>{
   try{
