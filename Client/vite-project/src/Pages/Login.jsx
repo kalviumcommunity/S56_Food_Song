@@ -14,17 +14,18 @@ function Login() {
           .catch(error => {
             console.log( error);
           })
+          if(username.includes(`${username}`)){
+            console.log(username)
+            return;
+        }else{
+            axios.post('https://s56-food-song-2.onrender.com/addUsername')
+                .then((res)=>console.log(res))
+            
+        }
     },[])
 
 
-    if(username.includes(`${username}`)){
-        console.log(username)
-        return;
-    }else{
-        axios.post('https://s56-food-song-2.onrender.com/addUsername')
-            .then((res)=>console.log(res))
-        
-    }
+   
 
     const handleSubmit = (e) => {
         e.preventDefault();

@@ -50,17 +50,17 @@ const [every, setEvery] = useState("All")
          <Navbar/>
          <div className="grid-container">
           <label>
-            Filter By User:
+             User:
             <select value={every} onChange={(e)=>{setEvery(e.target.value)}}>
               <option value="All">All</option>
-              {data.map((user, index)=>(
-                <option key={index} value={user.username}>
-                  {user.username}
+              {data.map((data, index)=>(
+                <option key={index} value={data.username}>
+                  {data.username}
                 </option>
               ))}
             </select>
           </label>
-         {filter.map(user => (
+         {users.map(user => (
            <div className="grid-item" key={user._id} style={{ width: '300px', height: '300px' }}>
              <img src={user.img} alt={user.food} style={{ width: '300px' }} />
              <h3 style={{ marginTop: '20px' }}>{user.song}</h3>

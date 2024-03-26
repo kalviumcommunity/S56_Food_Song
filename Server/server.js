@@ -91,10 +91,9 @@ app.delete('/deleteUser/:id',async(req,res)=>{
 
 app.post('/auth', async (req, res) => {
   try {
-      const { username, password } = req.body;
+      const { username } = req.body;
       const user ={
-        "username": username,
-        "password": password
+        "username": username
       }
        const accessToken = jwt.sign(user,process.env.ACCESS_TOKEN_SECRET)
        res.json(accessToken)
