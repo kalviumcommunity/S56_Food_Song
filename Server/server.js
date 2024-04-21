@@ -1,9 +1,15 @@
+require('dotenv').config()
+
 const express = require('express')
 const {Router} = require('./root.js')
 const cors = require('cors');
 const mongoose = require('mongoose');
-const UserModel = require('./models/user.js')
+const {UserModel,UserDetail} = require('./models/user.js')
 const app = express();
+const Joi = require('joi')
+const cookieParser = require('cookie-parser');
+const jwt = require('jsonwebtoken')
+app.use(cookieParser());
 
 app.use(express.json())
 app.use(cors());
@@ -14,8 +20,22 @@ const mongoURI = process.env.mongoURI
 console.log(mongoURI)
 const port = process.env.PUBLIC_PORT
 
+
+
+const createSchema = Joi.object({
+  img: Joi.string().required(),
+  song: Joi.string().required(),
+  food: Joi.string().required()
+})  
+
 app.post("/createUser",async(req,res)=>{
   try{
+    const {error, value} = createSchema.validate(req.body,{abortEarly: false})
+
+    if(error){
+      console.log(error);
+      return res.send(error.details)
+    }
     const newUser = await UserModel.create(req.body);
     res.send(newUser)
   }
@@ -69,6 +89,40 @@ app.delete('/deleteUser/:id',async(req,res)=>{
   }
 })
 
+app.post('/auth', async (req, res) => {
+  try {
+      const { username } = req.body;
+      const user ={
+        "username": username
+      }
+       const accessToken = jwt.sign(user,process.env.ACCESS_TOKEN_SECRET)
+       res.json(accessToken)
+       
+      res.send(user)
+  } catch (error) {
+      console.log(error);
+  }
+});
+
+app.get('/username',async(req,res)=>{
+  try{
+    let data = await UserDetail.find()
+    console.log(data)
+    res.send(data)
+  }catch(error){
+    res.send(error)
+  }
+})
+
+
+app.post("/addUsername", async (req, res) => {
+  try {
+    let response = await UserDetail.create(req.body);
+    res.send(response);
+  } catch (error) {
+    res.send(error);
+  }
+});
 
 app.get('/create',async(req,res)=>{
   try{
