@@ -4,7 +4,10 @@ const UserSchema = new mongoose.Schema({
     food: String,
     song: String,
     img: String,
-    creator: String
+    creator: {
+        type: String,
+        required:true
+    }
 })
 
 const UserDetails = new mongoose.Schema({
