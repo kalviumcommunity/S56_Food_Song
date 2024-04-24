@@ -59,6 +59,7 @@ function Home() {
             <img src={user.img} alt={user.food} style={{ width: '300px' }} />
             <h3 style={{ marginTop: '20px' }}>{user.song}</h3>
             <h4 className="food" style={{ marginTop: '30px' }}>{user.food}</h4>
+            <p>Created by: {user.creator}</p>
             <Link to={`/update/${user._id}`}><button className="update">Update</button></Link>
             <button className="delete" onClick={() => handleDelete(user._id)}>Delete</button>
           </div>
